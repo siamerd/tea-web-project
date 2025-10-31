@@ -1,0 +1,445 @@
+/* متغیرهای رنگی جدید برای زیبایی لوکس */
+:root {
+    --color-jade-green: #386641; /* سبز زیتونی تیره و اشباع شده */
+    --color-rich-gold: #C9A96B; /* طلایی لوکس و روشن‌تر */
+    --color-off-white: #F9F9F9; /* کرم خیلی ملایم، نزدیک به سفید */
+    --color-charcoal: #2A2A2A; /* مشکی زغالی برای متن */
+    --font-primary: 'Tahoma', 'Vazirmatn', sans-serif; /* فونت‌های کلاسیک و مدرن */
+    --font-heading: 'Vazirmatn', 'Georgia', serif; /* فونت رسمی‌تر برای عناوین */
+}
+
+/* بازنشانی و تنظیمات پایه */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* اسکرول نرم بین بخش‌ها */
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-off-white);
+    color: var(--color-charcoal);
+    line-height: 1.8; 
+    direction: rtl; 
+    text-align: right;
+    font-size: 17px; 
+    overflow-x: hidden; /* جلوگیری از اسکرول افقی */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-jade-green);
+    transition: all 0.4s ease-in-out; /* ترنزیشن عمومی برای لینک‌ها */
+}
+
+a:hover {
+    color: var(--color-rich-gold);
+    transform: translateY(-2px); /* افکت کوچک بالا آمدن */
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 900; 
+    color: var(--color-jade-green);
+    letter-spacing: -0.5px; 
+}
+
+section {
+    padding: 80px 8%; 
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative; /* برای انیمیشن‌های ورود */
+    opacity: 0; /* مخفی کردن بخش‌ها برای انیمیشن ورود */
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* نمایش بخش‌های قابل دید (Viewport) */
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- ۱. نوار ناوبری (Header) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    background-color: var(--color-off-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* سایه عمیق‌تر و پخش‌تر */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: 900;
+    color: var(--color-rich-gold); 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* سایه ظریف برای لوگو */
+}
+
+.nav-menu a {
+    margin-right: 30px;
+    font-weight: 500;
+    font-size: 1.05em;
+    color: var(--color-charcoal);
+    position: relative;
+}
+.nav-menu a::after { /* خط زیرین متحرک */
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-jade-green);
+    bottom: -5px;
+    right: 0; /* برای RTL */
+    transition: width 0.3s ease-out;
+}
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+
+.accent-link {
+    color: var(--color-off-white);
+    background-color: var(--color-jade-green);
+    padding: 10px 20px;
+    border-radius: 50px; /* دکمه گردتر */
+    transition: all 0.4s ease-in-out; /* ترنزیشن برای دکمه */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.accent-link:hover {
+    background-color: var(--color-rich-gold);
+    color: var(--color-charcoal);
+    transform: translateY(-3px); /* دکمه کمی بالا می‌آید */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* --- ۲. بخش قهرمان (Hero) --- */
+.hero-section {
+    height: 95vh; /* کمی بلندتر */
+    background-image: url('images/hero-tea-garden.jpg'); 
+    background-attachment: fixed; /* افکت پارالاکس */
+    background-size: cover;
+    background-position: center bottom; /* متن روی عکس در سمت راست و پایین‌تر */
+    display: flex;
+    align-items: flex-end; /* متن در پایین */
+    justify-content: center; /* متن در مرکز افقی */
+    color: var(--color-off-white); 
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.5); /* لایه تیره‌تر برای تضاد بهتر */
+    padding-bottom: 5%; /* پدینگ از پایین برای متن */
+}
+
+.hero-content {
+    max-width: 600px; /* کادر بزرگ‌تر */
+    padding: 50px; /* پدینگ بیشتر */
+    border-right: 8px solid var(--color-rich-gold); /* خط طلایی پررنگ‌تر */
+    background-color: rgba(0, 0, 0, 0.2); /* پس‌زمینه شفاف‌تر برای متن */
+    text-align: right;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* سایه عمیق‌تر */
+    backdrop-filter: blur(3px); /* افکت بلور برای پس‌زمینه متن */
+}
+
+.hero-content h1 {
+    font-size: 4.5em; /* عنوان بسیار بزرگتر */
+    color: var(--color-rich-gold); 
+    margin-bottom: 0.3em;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* سایه برای عنوان */
+}
+
+.hero-content p {
+    font-size: 1.6em; /* متن بزرگتر */
+    font-style: italic;
+    margin-bottom: 40px;
+    color: var(--color-off-white);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.cta-button {
+    background-color: var(--color-rich-gold);
+    color: var(--color-charcoal);
+    padding: 18px 40px; /* دکمه بزرگتر */
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 50px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    transition: all 0.4s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: var(--color-jade-green);
+    color: var(--color-off-white);
+    transform: translateY(-5px) scale(1.02); /* افکت جذاب‌تر */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* --- ۳. داستان ما (Story Section) --- */
+.story-section {
+    display: flex;
+    align-items: center;
+    gap: 120px; /* فاصله بیشتر */
+    padding: 120px 8%;
+    background-color: white;
+}
+
+.story-image {
+    flex: 1; 
+    max-width: 550px; /* تصویر بزرگتر */
+    position: relative;
+    border: 10px solid var(--color-rich-gold); /* قاب ضخیم‌تر */
+    padding: 15px; /* پدینگ قاب */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* سایه برای قاب */
+}
+.story-image::before { /* قاب دوم در پشت */
+    content: '';
+    position: absolute;
+    top: 30px; /* موقعیت قاب دوم */
+    right: -30px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-jade-green);
+    z-index: -1;
+    opacity: 0.15; /* کمی پررنگ‌تر */
+    transform: rotate(-3deg); /* کمی چرخش برای حس هنری */
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.story-text {
+    flex: 1.5; 
+}
+
+.story-text h2 {
+    font-size: 3em; /* عنوان بزرگتر */
+    margin-bottom: 25px;
+    border-bottom: 3px solid var(--color-rich-gold); /* خط ضخیم‌تر */
+    padding-bottom: 15px;
+    position: relative;
+}
+.story-text h2::after { /* یک نقطه طلایی در انتهای خط */
+    content: '•';
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    color: var(--color-rich-gold);
+    font-size: 1.5em;
+}
+
+.story-text p {
+    font-size: 1.15em;
+    color: var(--color-charcoal);
+}
+
+/* --- ۴. انواع چای (Tea Types) --- */
+.tea-types-section {
+    background-color: var(--color-jade-green); 
+    color: var(--color-off-white);
+    padding: 100px 8%;
+    text-align: center;
+}
+
+.tea-types-section h2 {
+    color: var(--color-rich-gold);
+    font-size: 3.5em; /* عنوان بزرگتر */
+    margin-bottom: 60px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.tea-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px; /* فاصله بیشتر */
+}
+
+.tea-card {
+    background-color: var(--color-off-white);
+    color: var(--color-charcoal);
+    padding: 40px 30px; /* پدینگ بیشتر */
+    border-radius: 20px; /* گوشه‌های گردتر */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); /* سایه عمیق و پخش */
+    transition: all 0.5s ease-out; /* ترنزیشن نرم‌تر */
+    border-top: 8px solid var(--color-rich-gold); /* نوار طلایی ضخیم‌تر */
+    transform: scale(0.98); /* شروع با کمی کوچکتر */
+    opacity: 0; /* برای انیمیشن ورود */
+}
+.tea-card.is-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tea-card:hover {
+    transform: translateY(-15px) scale(1.03); /* افکت بالا آمدن قوی‌تر و بزرگنمایی */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background-color: #FFF; /* کمی روشن‌تر در هاور */
+}
+
+.tea-card h3 {
+    color: var(--color-jade-green);
+    margin-bottom: 15px;
+    font-size: 1.8em; /* عنوان کارت بزرگتر */
+}
+.golden-icon {
+    font-size: 3.5em; /* آیکون بزرگتر */
+    color: var(--color-rich-gold);
+    display: block;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* --- ۵. فوتر شیک و اطلاعات (Footer) --- */
+.main-footer {
+    background-color: var(--color-charcoal);
+    color: var(--color-off-white);
+    padding: 60px 8% 30px;
+    text-align: center;
+}
+
+.footer-content h3 {
+    color: var(--color-rich-gold);
+    font-size: 2.5em; /* عنوان بزرگتر */
+    margin-bottom: 40px;
+}
+
+.info-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px; /* فاصله بیشتر */
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* خط جداکننده کمی پررنگ‌تر */
+    padding-bottom: 40px;
+    margin-bottom: 30px; /* فاصله از کپی‌رایت */
+}
+
+.info-grid h4 {
+    color: var(--color-rich-gold);
+    font-weight: 700;
+    font-size: 1.3em; /* عنوان اطلاعات بزرگتر */
+    margin-bottom: 10px;
+}
+.info-grid p {
+    font-size: 1.05em;
+    opacity: 0.9;
+}
+
+.copyright {
+    margin-top: 30px;
+    font-size: 0.95em;
+    opacity: 0.8;
+}
+
+/* --- واکنش‌گرایی برای موبایل --- */
+@media (max-width: 1024px) {
+    .story-section {
+        flex-direction: column;
+        gap: 80px;
+    }
+    .story-image {
+        max-width: 80%;
+    }
+    .tea-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* کارت‌ها در موبایل کمی بزرگتر */
+    }
+    .hero-content {
+        padding: 30px;
+    }
+    .hero-content h1 {
+        font-size: 3.5em;
+    }
+    .hero-content p {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 20px 5%;
+    }
+    .nav-menu {
+        margin-top: 15px;
+        flex-wrap: wrap; /* منو در موبایل به چند خط شکسته شود */
+        justify-content: center;
+    }
+    .nav-menu a {
+        margin: 5px 10px;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+    .hero-content {
+        max-width: 90%;
+        padding: 25px;
+        border-right: 5px solid var(--color-rich-gold);
+    }
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    .hero-content p {
+        font-size: 1.1em;
+    }
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+    .tea-grid {
+        grid-template-columns: 1fr; 
+    }
+    .info-grid {
+        flex-direction: column;
+        gap: 25px;
+    }
+    .story-text h2 {
+        font-size: 2.2em;
+    }
+}
+
+/* --- اضافه کردن JavaScript برای افکت‌های انیمیشن --- */
+/* این قسمت را باید در یک فایل scripts.js جداگانه قرار دهید و به index.html لینک کنید */
+/* فعلاً برای سادگی اینجا قرار می‌دهم تا در یکجا باشد */
+/* اگر خواستید، می‌توانم فایل scripts.js را جداگانه بدهم */
+/* این کد را بعد از تگ </body> در index.html اضافه کنید */
+/*
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // وقتی 20% از عنصر قابل مشاهده شد
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // فقط یکبار انیمیشن اجرا شود
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        document.querySelectorAll('.tea-card').forEach((card, index) => {
+            card.style.transitionDelay = ${index * 0.15}s; // تاخیر برای هر کارت
+            sectionObserver.observe(card); // مشاهده کارت‌ها به صورت جداگانه
+        });
+    });
+</script>
+*/
